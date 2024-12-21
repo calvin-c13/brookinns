@@ -69,19 +69,19 @@ const AddReview = ({ side, community, hall }) => {
     
 
     const socialLifeDescriptions = {
-        1: 'No social life',
-        2: 'Limited social activities',
-        3: 'Average social life',
-        4: 'Active social scene',
-        5: 'Great social atmosphere'
+        1: 'No hall activities or events.',
+        2: 'Infrequent and poorly organized activities.',
+        3: 'Occasional activities for social interaction.',
+        4: 'Regular, well-planned activities that encourage participation.',
+        5: 'Exceptional variety of engaging activities fostering strong community.'
     };
-
+    
     const managementStaffDescriptions = {
-        1: 'Poor management',
-        2: 'Below average',
-        3: 'Fair management',
-        4: 'Good management',
-        5: 'Excellent management'
+        1: 'Unresponsive and unhelpful RAs and management.',
+        2: 'Below average RAs and management, inconsistent support.',
+        3: 'Adequate RAs and management, addressing basic concerns.',
+        4: 'Attentive and supportive RAs and management, prioritizing resident well-being.',
+        5: 'Outstanding RAs and management, proactive and invested in positive living experience.'
     };
 
     const handleChange = (e) => {
