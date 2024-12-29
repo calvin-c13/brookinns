@@ -83,12 +83,6 @@ const ReviewSchema = new mongoose.Schema(
       max: 5,
       required: true,
     },
-    socialLife: {
-      type: Number,
-      min: 0.5,
-      max: 5,
-      required: true,
-    },
     managementAndStaff: {
       type: Number,
       min: 0.5,
