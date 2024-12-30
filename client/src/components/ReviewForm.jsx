@@ -29,7 +29,7 @@ const AddReview = ({ side, community, hall }) => {
     buildingQuality: "",
     buildingAmenities: "",
     location: "",
-    managementStaff: "",
+    managementAndStaff: "",
   });
 
   //description of star rating
@@ -38,7 +38,7 @@ const AddReview = ({ side, community, hall }) => {
     2: "Not so great, I would not recommend living here.",
     3: "Average experience, nothing special.",
     4: "Good, some minor issues but overall a good experience.",
-    5: "Exceptional, there is no place I would rather live.",
+    5: "Exceptional, there is no place I would rather live!",
   };
 
   const buildingQualityDescriptions = {
@@ -65,7 +65,7 @@ const AddReview = ({ side, community, hall }) => {
     5: "Prime location; very close to campus and everything you need",
   };
 
-  const managementStaffDescriptions = {
+  const managementAndStaffDescriptions = {
     1: "Unresponsive and unhelpful RAs and management.",
     2: "Below average RAs and management, inconsistent support.",
     3: "Adequate RAs and management, addressing basic concerns.",
@@ -108,10 +108,10 @@ const AddReview = ({ side, community, hall }) => {
         ...descriptions,
         location: locationDescriptions[value],
       });
-    } else if (name === "managementStaff") {
+    } else if (name === "managementAndStaff") {
       setDescriptions({
         ...descriptions,
-        managementStaff: managementStaffDescriptions[value],
+        managementAndStaff: managementAndStaffDescriptions[value],
       });
     }
   };
@@ -142,7 +142,8 @@ const AddReview = ({ side, community, hall }) => {
       </h2>
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-lg sm:max-w-xl md:max-w-2xl mx-auto my-8 p-4 sm:p-6 md:p-8 bg-white rounded-2xl shadow-md"
+        className="w-full max-w-lg sm:max-w-xl md:max-w-2xl mx-auto my-8 
+                  p-4 sm:p-6 md:p-8 bg-white rounded-2xl shadow-md"
       >
         {/* All optional answers */}
         <div className="flex sm:flex-row justify-around relative mb-5 font-medium">
@@ -324,19 +325,35 @@ const AddReview = ({ side, community, hall }) => {
         </div>
         <div className="my-6 border-t border-gray-500"></div>
 
+        {/* Management & Staff */}
         <div>
           <div style={{ textAlign: "center" }}>
-            <label>Management & Staff:</label>
-            <RequiredAsterisk />
+            <h3 className="text-2xl inline-flex items-center">
+              <span className="font-bold">Management & Staff</span>{" "}
+              <RequiredAsterisk />
+            </h3>
+            <p className="italic mt-2">
+              How was your experience with the building&apos;s management?
+            </p>
           </div>
-          <StarRating
-            name="managementStaff"
-            value={formData.managementStaff}
-            onChange={(value) => handleRatingChange("managementStaff", value)}
-          />
-          <p>{descriptions.managementAndStaff}</p>
+          <div className="w-full max-w-lg mx-auto mt-4">
+            <div className="flex flex-col items-center">
+              <StarRating
+                name="managementAndStaff"
+                value={formData.managementAndStaff}
+                onChange={(value) =>
+                  handleRatingChange("managementAndStaff", value)
+                }
+              />
+              <p className="text-center font-semibold mt-5">
+                {descriptions.managementAndStaff}
+              </p>
+            </div>
+          </div>
         </div>
+        <div className="my-6 border-t border-gray-500"></div>
 
+        {/* Recommendation */}
         <div>
           <div style={{ textAlign: "center" }}>
             <label>Would you recommend living here?</label>
