@@ -356,39 +356,96 @@ const AddReview = ({ side, community, hall }) => {
         {/* Recommendation */}
         <div>
           <div style={{ textAlign: "center" }}>
-            <label>Would you recommend living here?</label>
-            <RequiredAsterisk />
+            <h3 className="text-2xl inline-flex items-center">
+              <span className="font-bold">
+                Would you recommend living here?
+              </span>{" "}
+              <RequiredAsterisk />
+            </h3>
           </div>
-          <label>
-            <input
-              type="radio"
-              name="recommendation"
-              value="Yes"
-              checked={formData.recommendation === "Yes"}
-              onChange={handleChange}
-            />
-            Yes
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="recommendation"
-              value="Neutral"
-              checked={formData.recommendation === "Neutral"}
-              onChange={handleChange}
-            />
-            Neutral
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="recommendation"
-              value="No"
-              checked={formData.recommendation === "No"}
-              onChange={handleChange}
-            />
-            No
-          </label>
+
+          <div className="flex justify-center mt-4 space-x-8">
+            <label className="group flex items-center space-x-4 cursor-pointer">
+              <div
+                className={`w-6 h-6 flex items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-red-500 ${
+                  formData.recommendation === "Yes" ? "border-red-500" : ""
+                }`}
+              >
+                <div
+                  className={`w-3 h-3 rounded-full bg-red-600 ${
+                    formData.recommendation === "Yes"
+                      ? "opacity-100"
+                      : "opacity-0"
+                  }`}
+                />
+              </div>
+              <span className="text-lg font-medium text-gray-800 group-hover:text-red-600">
+                Yes
+              </span>
+              <input
+                type="radio"
+                name="recommendation"
+                value="Yes"
+                checked={formData.recommendation === "Yes"}
+                onChange={handleChange}
+                className="hidden"
+              />
+            </label>
+
+            <label className="group flex items-center space-x-4 cursor-pointer">
+              <div
+                className={`w-6 h-6 flex items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-red-500 ${
+                  formData.recommendation === "Neutral" ? "border-red-500" : ""
+                }`}
+              >
+                <div
+                  className={`w-3 h-3 rounded-full bg-red-600 ${
+                    formData.recommendation === "Neutral"
+                      ? "opacity-100"
+                      : "opacity-0"
+                  }`}
+                />
+              </div>
+              <span className="text-lg font-medium text-gray-800 group-hover:text-red-600">
+                Neutral
+              </span>
+              <input
+                type="radio"
+                name="recommendation"
+                value="Neutral"
+                checked={formData.recommendation === "Neutral"}
+                onChange={handleChange}
+                className="hidden"
+              />
+            </label>
+
+            <label className="group flex items-center space-x-4 cursor-pointer">
+              <div
+                className={`w-6 h-6 flex items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-red-500 ${
+                  formData.recommendation === "No" ? "border-red-500" : ""
+                }`}
+              >
+                <div
+                  className={`w-3 h-3 rounded-full bg-red-600 ${
+                    formData.recommendation === "No"
+                      ? "opacity-100"
+                      : "opacity-0"
+                  }`}
+                />
+              </div>
+              <span className="text-lg font-medium text-gray-800 group-hover:text-red-600">
+                No
+              </span>
+              <input
+                type="radio"
+                name="recommendation"
+                value="No"
+                checked={formData.recommendation === "No"}
+                onChange={handleChange}
+                className="hidden"
+              />
+            </label>
+          </div>
         </div>
 
         <div>
