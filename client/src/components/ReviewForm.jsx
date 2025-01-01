@@ -448,16 +448,29 @@ const AddReview = ({ side, community, hall }) => {
           </div>
         </div>
 
-        <div>
-          <label>Write a Review:</label>
-          <textarea
-            name="reviewText"
-            value={formData.reviewText}
-            onChange={handleChange}
-          />
+        {/* Review Text */}
+        <div className="my-6">
+          <div className="flex flex-col items-center space-y-4">
+            <h3 className="text-2xl font-bold text-center">Write a Review:</h3>
+            <textarea
+              name="reviewText"
+              value={formData.reviewText}
+              onChange={handleChange}
+              className="w-full max-w-lg h-32 border border-black rounded-lg p-2 
+              focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600"
+              placeholder="Share your thoughts here..."
+            />
+          </div>
         </div>
 
-        <button type="submit">Submit Review</button>
+        <div className="my-8 text-center">
+          <button
+            type="submit"
+            className="w-full max-w-xs mx-auto bg-red-600 text-white font-semibold py-3 px-3 rounded-lg shadow-md"
+          >
+            Submit Review
+          </button>
+        </div>
       </form>
     </div>
   );
