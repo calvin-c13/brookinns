@@ -41,11 +41,11 @@ export const createReview = async (req, res, next) => {
 
   // Save the review to the database
   try {
-    const savedReview = await newReview.save();
-    res.status(201).json(savedReview);
+    const newReview = new Review(req.body);
+    await newReview.save();
+    res.status(201).json({ success: true, message: 'Review submitted successfully' });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ success: false, message: 'Failed to submit review', error });
   }
 };
 

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import RequiredAsterisk from "./RequiredAsterisk";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+
 
 const AddReview = ({ side, community, hall }) => {
   const [formData, setFormData] = useState({
@@ -23,6 +25,7 @@ const AddReview = ({ side, community, hall }) => {
   });
 
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
   const [descriptions, setDescriptions] = useState({
     overall: "",
@@ -118,7 +121,26 @@ const AddReview = ({ side, community, hall }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+    // Check if all required fields are filled
+    const requiredFields = [
+      "overallRating",
+      "buildingQuality",
+      "buildingAmenities",
+      "location",
+      "managementAndStaff",
+      "wouldRecommend",
+    ];
+  
+    const isValid = requiredFields.every(
+      (field) => formData[field] && formData[field] !== ""
+    );
+  
+    if (!isValid) {
+      setError(true);
+      return;
+    }
+  
     try {
       setError(false);
       const response = await fetch("/api/reviews/create", {
@@ -126,14 +148,22 @@ const AddReview = ({ side, community, hall }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(...formData),
+        body: JSON.stringify(formData),
       });
+  
       const data = await response.json();
-      if (data.success === false) setError(data.message);
+  
+      if (data.success === true) {
+        // Redirect to the thank you page upon successful review submission
+        navigate(`/thankyou`);
+      } else {
+        setError(data.message); // Display error if submission fails
+      }
     } catch (error) {
-      setError(error.message);
+      setError("Failed to submit review: " + error.message);
     }
   };
+  
 
   return (
     <div>
@@ -353,7 +383,7 @@ const AddReview = ({ side, community, hall }) => {
         </div>
         <div className="my-6 border-t border-gray-500"></div>
 
-        {/* Recommendation */}
+        {/* wouldRecommend */}
         <div>
           <div style={{ textAlign: "center" }}>
             <h3 className="text-2xl inline-flex items-center">
@@ -368,12 +398,12 @@ const AddReview = ({ side, community, hall }) => {
             <label className="group flex items-center space-x-4 cursor-pointer">
               <div
                 className={`w-6 h-6 flex items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-red-500 ${
-                  formData.recommendation === "Yes" ? "border-red-500" : ""
+                  formData.wouldRecommend === "Yes" ? "border-red-500" : ""
                 }`}
               >
                 <div
                   className={`w-3 h-3 rounded-full bg-red-600 ${
-                    formData.recommendation === "Yes"
+                    formData.wouldRecommend === "Yes"
                       ? "opacity-100"
                       : "opacity-0"
                   }`}
@@ -384,9 +414,9 @@ const AddReview = ({ side, community, hall }) => {
               </span>
               <input
                 type="radio"
-                name="recommendation"
+                name="wouldRecommend"
                 value="Yes"
-                checked={formData.recommendation === "Yes"}
+                checked={formData.wouldRecommend === "Yes"}
                 onChange={handleChange}
                 className="hidden"
               />
@@ -395,12 +425,12 @@ const AddReview = ({ side, community, hall }) => {
             <label className="group flex items-center space-x-4 cursor-pointer">
               <div
                 className={`w-6 h-6 flex items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-red-500 ${
-                  formData.recommendation === "Neutral" ? "border-red-500" : ""
+                  formData.wouldRecommend === "Neutral" ? "border-red-500" : ""
                 }`}
               >
                 <div
                   className={`w-3 h-3 rounded-full bg-red-600 ${
-                    formData.recommendation === "Neutral"
+                    formData.wouldRecommend === "Neutral"
                       ? "opacity-100"
                       : "opacity-0"
                   }`}
@@ -411,9 +441,9 @@ const AddReview = ({ side, community, hall }) => {
               </span>
               <input
                 type="radio"
-                name="recommendation"
+                name="wouldRecommend"
                 value="Neutral"
-                checked={formData.recommendation === "Neutral"}
+                checked={formData.wouldRecommend === "Neutral"}
                 onChange={handleChange}
                 className="hidden"
               />
@@ -422,12 +452,12 @@ const AddReview = ({ side, community, hall }) => {
             <label className="group flex items-center space-x-4 cursor-pointer">
               <div
                 className={`w-6 h-6 flex items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-red-500 ${
-                  formData.recommendation === "No" ? "border-red-500" : ""
+                  formData.wouldRecommend === "No" ? "border-red-500" : ""
                 }`}
               >
                 <div
                   className={`w-3 h-3 rounded-full bg-red-600 ${
-                    formData.recommendation === "No"
+                    formData.wouldRecommend === "No"
                       ? "opacity-100"
                       : "opacity-0"
                   }`}
@@ -438,9 +468,9 @@ const AddReview = ({ side, community, hall }) => {
               </span>
               <input
                 type="radio"
-                name="recommendation"
+                name="wouldRecommend"
                 value="No"
-                checked={formData.recommendation === "No"}
+                checked={formData.wouldRecommend === "No"}
                 onChange={handleChange}
                 className="hidden"
               />
@@ -462,6 +492,12 @@ const AddReview = ({ side, community, hall }) => {
             />
           </div>
         </div>
+
+        {error && (
+        <div className="text-center text-red-600 font-semibold text-xl my-4">
+          <h2>* All required questions must be filled.</h2>
+        </div>
+      )}
 
         <div className="my-8 text-center">
           <button
