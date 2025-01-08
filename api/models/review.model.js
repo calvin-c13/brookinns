@@ -37,11 +37,6 @@ const ReviewSchema = new mongoose.Schema(
       trim: true,
       set: capitalizeFirstLetter,
     },
-    major: {
-      type: String,
-      trim: true,
-      set: capitalizeFirstLetter,
-    },
     academicStanding: {
       type: String,
       enum: ["Freshman", "Sophomore", "Junior", "Senior", "Graduate"],
@@ -92,11 +87,9 @@ const ReviewSchema = new mongoose.Schema(
     wouldRecommend: {
       type: String,
       enum: [
-        "Highly likely",
-        "Likely",
+        "Yes",
         "Neutral",
-        "Unlikely",
-        "Highly unlikely",
+        "No",
       ],
       required: true,
     },

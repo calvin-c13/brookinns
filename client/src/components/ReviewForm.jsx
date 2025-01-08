@@ -3,11 +3,9 @@ import RequiredAsterisk from "./RequiredAsterisk";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-
 const AddReview = ({ side, community, hall }) => {
   const [formData, setFormData] = useState({
     name: "",
-    major: "",
     academicStanding: "",
     roomType: "Double",
     ac: "No",
@@ -121,7 +119,7 @@ const AddReview = ({ side, community, hall }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     // Check if all required fields are filled
     const requiredFields = [
       "overallRating",
@@ -131,16 +129,16 @@ const AddReview = ({ side, community, hall }) => {
       "managementAndStaff",
       "wouldRecommend",
     ];
-  
+
     const isValid = requiredFields.every(
       (field) => formData[field] && formData[field] !== ""
     );
-  
+
     if (!isValid) {
       setError(true);
       return;
     }
-  
+
     try {
       setError(false);
       const response = await fetch("/api/reviews/create", {
@@ -150,9 +148,9 @@ const AddReview = ({ side, community, hall }) => {
         },
         body: JSON.stringify(formData),
       });
-  
+
       const data = await response.json();
-  
+
       if (data.success === true) {
         // Redirect to the thank you page upon successful review submission
         navigate(`/thankyou`);
@@ -163,7 +161,7 @@ const AddReview = ({ side, community, hall }) => {
       setError("Failed to submit review: " + error.message);
     }
   };
-  
+
 
   return (
     <div>
@@ -172,49 +170,50 @@ const AddReview = ({ side, community, hall }) => {
       </h2>
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-lg sm:max-w-xl md:max-w-2xl mx-auto my-8 
+        className="w-[95%] max-w-sm sm:max-w-xl md:max-w-2xl mx-auto my-6 
                   p-4 sm:p-6 md:p-8 bg-white rounded-2xl shadow-md"
       >
         {/* All optional answers */}
-        <div className="flex sm:flex-row justify-around relative mb-5 font-medium">
-          <div>
-            <label>Name: &nbsp;</label>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 relative mb-5 font-medium text-center sm:text-left">
+          <div className="flex flex-col sm:flex-row sm:items-center">
+            <label className="mb-2 sm:mb-0 sm:mr-2">Name:</label>
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="border-b-2 border-b-black p-2 focus:outline-none"
-              style={{
-                width: "180px",
-              }}
+              className="border-b-2 border-b-black p-2 focus:outline-none text-center w-full sm:w-[170px]"
             />
           </div>
 
-          <div>
-            <label>Major: &nbsp;</label>
-            <input
-              type="text"
-              name="major"
-              value={formData.major}
+          <div className="flex flex-col sm:flex-row sm:items-center">
+            <label className="mb-2 sm:mb-0 sm:mr-2 text-center self-center">
+              Academic Standing:
+            </label>
+            <select
+              name="academicStanding"
+              value={formData.academicStanding}
               onChange={handleChange}
-              className="border-b-2 border-b-black p-2 focus:outline-none"
-              style={{
-                width: "180px",
-              }}
-            />
+              className="border-b-2 border-b-black p-2 focus:outline-none text-center"
+            >
+              <option value="Freshman">Freshman</option>
+              <option value="Sophomore">Sophomore</option>
+              <option value="Junior">Junior</option>
+              <option value="Senior">Senior</option>
+              <option value="Graduate">Graduate</option>
+            </select>
           </div>
         </div>
 
         <div className="flex justify-center mb-5 font-medium">
-          <div className="flex flex-wrap justify-between w-full max-w-3xl space-x-8 md:space-x-16 items-center">
+          <div className="flex flex-wrap justify-between w-full max-w-3xl items-center">
             <div className="flex flex-col sm:flex-row items-center">
-              <label>Room type:</label>
+              <label className="mr-2">Room type:</label>
               <select
                 name="roomType"
                 value={formData.roomType}
                 onChange={handleChange}
-                className="border-b-2 border-b-black p-2 focus:outline-none"
+                className="border-b-2 border-b-black p-2 focus:outline-none text-center"
               >
                 <option value="Single">Single</option>
                 <option value="Double">Double</option>
@@ -223,12 +222,12 @@ const AddReview = ({ side, community, hall }) => {
             </div>
 
             <div className="flex flex-col sm:flex-row items-center">
-              <label>AC:</label>
+              <label className="mr-2">AC:</label>
               <select
                 name="ac"
                 value={formData.ac}
                 onChange={handleChange}
-                className="border-b-2 border-b-black p-2 focus:outline-none"
+                className="border-b-2 border-b-black p-2 focus:outline-none text-center"
               >
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
@@ -236,12 +235,12 @@ const AddReview = ({ side, community, hall }) => {
             </div>
 
             <div className="flex flex-col sm:flex-row items-center">
-              <label>Kitchen:</label>
+              <label className="mr-2">Kitchen:</label>
               <select
                 name="kitchen"
                 value={formData.kitchen}
                 onChange={handleChange}
-                className="border-b-2 border-b-black p-2 focus:outline-none"
+                className="border-b-2 border-b-black p-2 focus:outline-none text-center"
               >
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
@@ -493,12 +492,14 @@ const AddReview = ({ side, community, hall }) => {
           </div>
         </div>
 
+        {/* Error message */}
         {error && (
-        <div className="text-center text-red-600 font-semibold text-xl my-4">
-          <h2>* All required questions must be filled.</h2>
-        </div>
-      )}
+          <div className="text-center text-red-600 font-semibold text-xl my-4">
+            <h2>* All required questions must be filled.</h2>
+          </div>
+        )}
 
+        {/* Submit Button */}
         <div className="my-8 text-center">
           <button
             type="submit"
