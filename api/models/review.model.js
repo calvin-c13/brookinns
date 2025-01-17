@@ -33,6 +33,7 @@ const ReviewSchema = new mongoose.Schema(
       lowercase: true,
     },
     name: {
+      //Reviewer's name
       type: String,
       trim: true,
       set: capitalizeFirstLetter,
