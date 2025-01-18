@@ -3,7 +3,7 @@ import { createReview, getAllReviews, getReviewsBySide, getReviewsByCommunity, g
 
 const router = express.Router();
 
-router.post('/create', createReview);
+router.post('/:side/:hall/add-review', createReview);
 router.get('/', getAllReviews);
 router.get('/:side', getReviewsBySide);
 router.get('/:side/:community', getReviewsByCommunity);

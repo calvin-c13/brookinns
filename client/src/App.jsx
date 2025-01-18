@@ -60,7 +60,7 @@ const westSidePages = [
 
 // Lazy loading
 const importPageComponent = (side, page) =>
-  React.lazy(() => import(`./pages/${side}/${page}`));
+  React.lazy(() => import(`./pages/${side}/${page}.jsx`));
 const importReviewFormComponent = (side, page) => {
   const capitalizedPage = page.charAt(0).toUpperCase() + page.slice(1);
   return React.lazy(() =>
@@ -118,7 +118,7 @@ export default function App() {
                       }
                     />
                     <Route
-                      path={`/east/${page.toLowerCase()}/add-review`}
+                      path={`/east/${page.toLowerCase()}/create-review`}
                       element={
                         <React.Suspense fallback={<Loading />}>
                           <ReviewFormComponent />
@@ -147,7 +147,7 @@ export default function App() {
                       }
                     />
                     <Route
-                      path={`/west/${page.toLowerCase()}/add-review`}
+                      path={`/west/${page.toLowerCase()}/create-review`}
                       element={
                         <React.Suspense fallback={<Loading />}>
                           <ReviewFormComponent />

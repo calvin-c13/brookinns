@@ -6,15 +6,15 @@ import { useNavigate } from "react-router-dom";
 const AddReview = ({ side, community, hall }) => {
   const [formData, setFormData] = useState({
     name: "",
-    academicStanding: "",
+    academicStanding: "Freshman",
     roomType: "Double",
     ac: "No",
     kitchen: "No",
-    overall: "",
-    buildingQuality: "",
-    buildingAmenities: "",
-    location: "",
-    managementAndStaff: "",
+    overall: 0,
+    buildingQuality: 0,
+    buildingAmenities: 0,
+    location: 0,
+    managementAndStaff: 0,
     wouldRecommend: "",
     reviewText: "",
     side: side,
@@ -89,7 +89,7 @@ const AddReview = ({ side, community, hall }) => {
     });
 
     // Update descriptions for each category based on the rating
-    if (name === "overallRating") {
+    if (name === "overall") {
       setDescriptions({
         ...descriptions,
         overall: overallDescriptions[value],
@@ -119,49 +119,60 @@ const AddReview = ({ side, community, hall }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Check if all required fields are filled
+  
+    // Validation logic
     const requiredFields = [
-      "overallRating",
+      "overall",
       "buildingQuality",
       "buildingAmenities",
       "location",
       "managementAndStaff",
       "wouldRecommend",
     ];
-
-    const isValid = requiredFields.every(
-      (field) => formData[field] && formData[field] !== ""
+  
+    const missingFields = requiredFields.filter(
+      (field) => !formData[field] || formData[field] === 0 || formData[field] === ""
     );
-
-    if (!isValid) {
+  
+    if (missingFields.length > 0) {
       setError(true);
       return;
     }
-
+  
+    console.log("Form data being sent:", formData); // Log the data being sent
+  
     try {
       setError(false);
-      const response = await fetch("/api/reviews/create", {
+      const response = await fetch("/api/review/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
-
+  
+      console.log("Response status:", response.status); // Log the response status
+  
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("Server error response:", errorText); // Log raw error response
+        setError(`Server error: ${errorText}`);
+        return;
+      }
+  
       const data = await response.json();
-
-      if (data.success === true) {
-        // Redirect to the thank you page upon successful review submission
-        navigate(`/thankyou`);
-      } else {
-        setError(data.message); // Display error if submission fails
+      console.log("Server response:", data); // Log the parsed response
+  
+      if (data.success) {
+        navigate("/thankyou");
       }
     } catch (error) {
+      console.error("Full error object:", error); // Log the complete error
+      console.error("Error stack trace:", error.stack); // Log the stack trace
       setError("Failed to submit review: " + error.message);
     }
   };
-
+  
 
   return (
     <div>
@@ -263,9 +274,9 @@ const AddReview = ({ side, community, hall }) => {
           <div className="w-full max-w-lg mx-auto mt-4">
             <div className="flex flex-col items-center">
               <StarRating
-                name="overallRating"
-                value={formData.overallRating}
-                onChange={(value) => handleRatingChange("overallRating", value)}
+                name="overall"
+                value={formData.overall}
+                onChange={(value) => handleRatingChange("overall", value)}
               />
               <p className="text-center font-semibold mt-5">
                 {descriptions.overall}
@@ -492,12 +503,14 @@ const AddReview = ({ side, community, hall }) => {
           </div>
         </div>
 
+
         {/* Error message */}
         {error && (
           <div className="text-center text-red-600 font-semibold text-xl my-4">
             <h2>* All required questions must be filled.</h2>
           </div>
         )}
+
 
         {/* Submit Button */}
         <div className="my-8 text-center">
