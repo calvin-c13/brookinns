@@ -24,14 +24,14 @@ export default function West() {
 
             {/*Living learning*/}
             <DormMinicard
-                to='/east/lauterbur'
+                to='/west/lauterbur'
                 name='Lauterbur Hall'
                 community='Living Learning Community'
                 image={noPhotoExterior}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/yang'
+                to='/west/yang'
                 name='Yang Hall'
                 community='Living Learning Community'
                 image={noPhotoExterior}
@@ -41,35 +41,35 @@ export default function West() {
 
             {/*Tabler*/}
             <DormMinicard
-                to='/east/chinn'
+                to='/west/chinn'
                 name='Chinn Hall'
                 community='Tabler Community'
                 image={noPhotoExterior}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/douglass'
+                to='/west/douglass'
                 name='Douglass Hall'
                 community='Tabler Community'
                 image={noPhotoExterior}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/dreiser'
+                to='/west/dreiser'
                 name='Dreiser Hall'
                 community='Tabler Community'
                 image={noPhotoExterior}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/hand'
+                to='/west/hand'
                 name='Hand Hall'
                 community='Tabler Community'
                 image={noPhotoExterior}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/toscanini'
+                to='/west/toscanini'
                 name='Toscanini Hall'
                 community='Tabler Community'
                 image={noPhotoExterior}
@@ -80,28 +80,28 @@ export default function West() {
 
             {/*Roosevelt*/}
             <DormMinicard
-                to='/east/wagner'
+                to='/west/wagner'
                 name='Wagner Hall'
                 community='Roosevelt Community'
                 image={wagnerX}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/stimson'
+                to='/west/stimson'
                 name='Stimson Hall'
                 community='Roosevelt Community'
                 image={noPhotoExterior}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/keller'
+                to='/west/keller'
                 name='Keller Hall'
                 community='Roosevelt Community'
                 image={noPhotoExterior}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/greeley'
+                to='/west/greeley'
                 name='Greeley Hall'
                 community='Roosevelt Community'
                 image={noPhotoExterior}
@@ -111,35 +111,35 @@ export default function West() {
 
             {/*Kelly*/}
             <DormMinicard
-                to='/east/baruch'
+                to='/west/baruch'
                 name='Baruch Hall'
                 community='Kelly Community'
                 image={noPhotoExterior}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/dewey'
+                to='/west/dewey'
                 name='Dewey Hall'
                 community='Kelly Community'
                 image={noPhotoExterior}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/eisenhower'
+                to='/west/eisenhower'
                 name='Eisenhower Hall'
                 community='Kelly Community'
                 image={noPhotoExterior}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/hamilton'
+                to='/west/hamilton'
                 name='Hamilton Hall'
                 community='Kelly Community'
                 image={noPhotoExterior}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/schick'
+                to='/west/schick'
                 name='Schick Hall'
                 community='Kelly Community'
                 image={noPhotoExterior}
@@ -149,35 +149,35 @@ export default function West() {
 
             {/*Roth*/}
             <DormMinicard
-                to='/east/cardozo'
+                to='/west/cardozo'
                 name='Cardozo Hall'
                 community='Roth Community'
                 image={noPhotoExterior}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/gershwin'
+                to='/west/gershwin'
                 name='Gerhswin Hall'
                 community='Roth Community'
                 image={noPhotoExterior}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/hendrix'
+                to='/west/hendrix'
                 name='Hendrix Hall'
                 community='Roth Community'
                 image={noPhotoExterior}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/mount'
+                to='/west/mount'
                 name='Mount Hall'
                 community='Roth Community'
                 image={noPhotoExterior}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/whitman'
+                to='/west/whitman'
                 name='Whitman Hall'
                 community='Roth Community'
                 image={noPhotoExterior}
@@ -187,77 +187,77 @@ export default function West() {
 
             {/*West*/}
             <DormMinicard
-                to='/east/westA'
+                to='/west/westA'
                 name='West A Apartments'
                 community='West Apartments'
                 image={westAX}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/westB'
+                to='/west/westB'
                 name='West B Apartments'
                 community='West Apartments'
                 image={westBX}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/westC'
+                to='/west/westC'
                 name='West C Apartments'
                 community='West Apartments'
                 image={westCX}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/westD'
+                to='/west/westD'
                 name='West D Apartments'
                 community='West Apartments'
                 image={westDX}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/westE'
+                to='/west/westE'
                 name='West E Apartments'
                 community='West Apartments'
                 image={westEX}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/westF'
+                to='/west/westF'
                 name='West F Apartments'
                 community='West Apartments'
                 image={westFX}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/westG'
+                to='/west/westG'
                 name='West G Apartments'
                 community='West Apartments'
                 image={westGX}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/westH'
+                to='/west/westH'
                 name='West H Apartments'
                 community='West Apartments'
                 image={westHX}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/westI'
+                to='/west/westI'
                 name='West I Apartments'
                 community='West Apartments'
                 image={westIX}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/westJ'
+                to='/west/westJ'
                 name='West J Apartments'
                 community='West Apartments'
                 image={noPhotoExterior}
                 rating='Insert Rating Here'
             />
             <DormMinicard
-                to='/east/westK'
+                to='/west/westK'
                 name='West K Apartments'
                 community='West Apartments'
                 image={noPhotoExterior}
@@ -267,7 +267,7 @@ export default function West() {
 
             {/*Schomburg*/}
             <DormMinicard
-                to='/east/schomburg'
+                to='/west/schomburg'
                 name='Schomburg Apartments'
                 community='Schomburg Apartments'
                 image={noPhotoExterior}
@@ -277,7 +277,7 @@ export default function West() {
 
             {/*Chapin*/}
             <DormMinicard
-                to='/east/chapin'
+                to='/west/chapin'
                 name='Chapin Apartments'
                 community='Chapin Apartments'
                 image={noPhotoExterior}
