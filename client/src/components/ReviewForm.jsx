@@ -139,11 +139,9 @@ const AddReview = ({ side, community, hall }) => {
       return;
     }
   
-    console.log("Form data being sent:", formData); // Log the data being sent
-  
     try {
       setError(false);
-      const response = await fetch("/api/review/create", {
+      const response = await fetch(`/api/review/${side}/${hall}/add-review`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -151,24 +149,15 @@ const AddReview = ({ side, community, hall }) => {
         body: JSON.stringify(formData),
       });
   
-      console.log("Response status:", response.status); // Log the response status
-  
       if (!response.ok) {
-        const errorText = await response.text();
-        console.error("Server error response:", errorText); // Log raw error response
-        setError(`Server error: ${errorText}`);
-        return;
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
   
-      const data = await response.json();
-      console.log("Server response:", data); // Log the parsed response
-  
-      if (data.success) {
-        navigate("/thankyou");
-      }
+      // Navigate to thank you page after successful submission
+      navigate("/thankyou");
+      
     } catch (error) {
-      console.error("Full error object:", error); // Log the complete error
-      console.error("Error stack trace:", error.stack); // Log the stack trace
+      console.error("Error submitting review:", error);
       setError("Failed to submit review: " + error.message);
     }
   };

@@ -98,7 +98,7 @@ export default function App() {
               <Route path="/about" element={<About />} />
               <Route path="/east" element={<East />} />
               <Route path="/west" element={<West />} />
-              <Route path="/thank-you" element={<ThankYou />} />
+              <Route path="/thankyou" element={<ThankYou />} />
 
               {/* East Side Pages */}
               {eastSidePages.map((page) => {
