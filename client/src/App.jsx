@@ -118,7 +118,7 @@ export default function App() {
                       }
                     />
                     <Route
-                      path={`/east/${page.toLowerCase()}/create-review`}
+                      path={`/east/${page.toLowerCase()}/add-review`}
                       element={
                         <React.Suspense fallback={<Loading />}>
                           <ReviewFormComponent />
@@ -147,7 +147,7 @@ export default function App() {
                       }
                     />
                     <Route
-                      path={`/west/${page.toLowerCase()}/create-review`}
+                      path={`/west/${page.toLowerCase()}/add-review`}
                       element={
                         <React.Suspense fallback={<Loading />}>
                           <ReviewFormComponent />
