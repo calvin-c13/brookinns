@@ -29,9 +29,8 @@ export default function Footer() {
         {/* Footer Content */}
         <div className="flex flex-col sm:flex-row flex-1 text-center justify-center items-center space-y-2 sm:space-x-28 sm:space-y-0 w-full">
           <p className={commonStyles}>All rights reserved</p>
-          <p className={commonStyles}>© 2024 BrookInns</p>
+          <p className={commonStyles}>© 2025 BrookInns</p>
           <p className={commonStyles}>Not affiliated with SBU</p>
-
         </div>
       </div>
     </footer>
