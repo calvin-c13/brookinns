@@ -31,9 +31,7 @@ export default function Footer() {
           <p className={commonStyles}>All rights reserved</p>
           <p className={commonStyles}>© 2024 BrookInns</p>
           <p className={commonStyles}>Not affiliated with SBU</p>
-          <Link to="/about">
-            <p className={`${commonStyles} hover:underline`}>About</p>
-          </Link>
+
         </div>
       </div>
     </footer>
